@@ -1,0 +1,585 @@
+/* ==================== CSS 变量 - 脏橘色 + 深蓝色配色 ==================== */
+:root {
+    /* 主色调 */
+    --primary-blue: #1a3a52;        /* 深蓝色 */
+    --secondary-blue: #2d5f7f;      /* 中蓝色 */
+    --accent-orange: #c97a4a;       /* 脏橘色 */
+    --dark-orange: #a85f38;         /* 深橘色 */
+    
+    /* 背景色 */
+    --bg-dark: #0f1e2b;             /* 深色背景 */
+    --bg-card: #1a2f3f;             /* 卡片背景 */
+    --bg-input: #152535;            /* 输入框背景 */
+    
+    /* 文字颜色 */
+    --text-primary: #e8eef2;        /* 主文字 */
+    --text-secondary: #a8b8c5;      /* 次要文字 */
+    --text-muted: #6b7c8a;          /* 弱化文字 */
+    
+    /* 边框和线条 */
+    --border-blue: #2d5f7f;
+    --border-orange: #c97a4a;
+    
+    /* 状态颜色 */
+    --success: #4a9d6f;
+    --danger: #c94a4a;
+    --warning: #c9a04a;
+}
+
+/* ==================== 全局样式 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', 'Rajdhani', sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #0a1520 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 背景几何图案 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, var(--primary-blue) 1px, transparent 1px),
+        linear-gradient(0deg, var(--primary-blue) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.03;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ==================== 头部样式 ==================== */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.header-line {
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--border-blue) 20%, 
+        var(--border-orange) 50%, 
+        var(--border-blue) 80%, 
+        transparent 100%);
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(201, 122, 74, 0.3);
+}
+
+.title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.title-icon {
+    color: var(--accent-orange);
+    font-size: 3rem;
+    text-shadow: 0 0 20px rgba(201, 122, 74, 0.5);
+}
+
+.title-version {
+    font-size: 1rem;
+    color: var(--text-muted);
+    border: 2px solid var(--border-blue);
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+/* ==================== 主内容区 ==================== */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+/* ==================== 区块样式 ==================== */
+.form-section,
+.list-section {
+    background: var(--bg-card);
+    border: 2px solid var(--border-blue);
+    border-left: 5px solid var(--accent-orange);
+    padding: 30px;
+    position: relative;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.form-section::before,
+.list-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, transparent 50%, var(--accent-orange) 50%);
+    opacity: 0.1;
+    clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-blue);
+}
+
+.section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-icon {
+    color: var(--accent-orange);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* ==================== 表单样式 ==================== */
+.user-form {
+    width: 100%;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-label::before {
+    content: '▸';
+    color: var(--accent-orange);
+    font-size: 1.2rem;
+}
+
+.form-input {
+    background: var(--bg-input);
+    border: 2px solid var(--border-blue);
+    border-left: 4px solid var(--accent-orange);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--accent-orange);
+    box-shadow: 
+        0 0 0 3px rgba(201, 122, 74, 0.1),
+        0 0 20px rgba(201, 122, 74, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* ==================== 按钮样式 ==================== */
+.btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background: var(--accent-orange);
+    border-color: var(--dark-orange);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background: var(--dark-orange);
+    box-shadow: 0 0 20px rgba(201, 122, 74, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border-color: var(--border-blue);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-blue);
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 20px rgba(45, 95, 127, 0.4);
+}
+
+.btn-danger {
+    background: var(--danger);
+    border-color: #a83838;
+    color: var(--text-primary);
+}
+
+.btn-danger:hover {
+    background: #a83838;
+    box-shadow: 0 0 20px rgba(201, 74, 74, 0.4);
+}
+
+/* ==================== 用户列表样式 ==================== */
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.user-card {
+    background: var(--bg-input);
+    border: 2px solid var(--border-blue);
+    border-top: 4px solid var(--accent-orange);
+    padding: 25px;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(201, 122, 74, 0.2);
+    border-color: var(--accent-orange);
+}
+
+.user-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, transparent 50%, var(--primary-blue) 50%);
+    opacity: 0.3;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.user-id {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Rajdhani', monospace;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: var(--bg-dark);
+    padding: 4px 10px;
+    border: 1px solid var(--border-blue);
+}
+
+.user-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+    margin-bottom: 15px;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.user-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.user-info-item::before {
+    content: '▸';
+    color: var(--accent-orange);
+    font-weight: 700;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-blue);
+}
+
+.user-actions .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+/* ==================== 加载和空状态 ==================== */
+.loading,
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.loading::after {
+    content: '...';
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+/* ==================== 提示消息 ==================== */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-blue);
+    border-left: 5px solid var(--accent-orange);
+    color: var(--text-primary);
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success {
+    border-left-color: var(--success);
+}
+
+.toast.error {
+    border-left-color: var(--danger);
+}
+
+/* ==================== 模态框样式 ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border: 2px solid var(--border-blue);
+    border-top: 5px solid var(--accent-orange);
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-small {
+    max-width: 400px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-blue);
+}
+
+.modal-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--accent-orange);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    margin-bottom: 25px;
+}
+
+.modal-body p {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.warning-text {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
