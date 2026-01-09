@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理系统</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="header-line"></div>
+            <h1 class="title">
+                <span class="title-icon">▣</span>
+                用户管理系统
+                <span class="title-version">v1.0</span>
+            </h1>
+            <div class="header-line"></div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 添加用户表单 -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">+</span>
+                        添加新用户
+                    </h2>
+                </div>
+                
+                <form id="userForm" class="user-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name" class="form-label">姓名</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="请输入姓名" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">邮箱</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age" class="form-label">年龄</label>
+                            <input type="number" id="age" name="age" class="form-input" placeholder="18" min="0" max="150">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-icon">✓</span>
+                        创建用户
+                    </button>
+                </form>
+            </section>
+
+            <!-- 用户列表 -->
+            <section class="list-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-icon">≡</span>
+                        用户列表
+                    </h2>
+                    <button id="refreshBtn" class="btn btn-secondary">
+                        <span class="btn-icon">↻</span>
+                        刷新
+                    </button>
+                </div>
+                
+                <div id="userList" class="user-list">
+                    <!-- 用户卡片将通过 JavaScript 动态生成 -->
+                    <div class="loading">加载中...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 提示消息 -->
+        <div id="toast" class="toast"></div>
+
+        <!-- 编辑模态框 -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">编辑用户</h3>
+                    <button class="modal-close" onclick="closeEditModal()">&times;</button>
+                </div>
+                <form id="editForm" class="user-form">
+                    <input type="hidden" id="editUserId">
+                    
+                    <div class="form-group">
+                        <label for="editName" class="form-label">姓名</label>
+                        <input type="text" id="editName" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editEmail" class="form-label">邮箱</label>
+                        <input type="email" id="editEmail" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editAge" class="form-label">年龄</label>
+                        <input type="number" id="editAge" class="form-input" min="0" max="150">
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 删除确认模态框 -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content modal-small">
+                <div class="modal-header">
+                    <h3 class="modal-title">确认删除</h3>
+                    <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>确定要删除用户 <strong id="deleteUserName"></strong> 吗？</p>
+                    <p class="warning-text">此操作不可撤销！</p>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">取消</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
